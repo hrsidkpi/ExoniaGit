@@ -15,11 +15,12 @@ namespace Exonia.particles.matter
 			gravoactive = true;
 			lensity = 20;
 			mass = 10000;
-			size = 4;
+			size = 5;
 			heatCapactiy = 20;
-			evaporationPoint = 50;
-			density = 1/20f;
-			chemobondiality = 40;
+			evaporationPoint = 1000;
+            meltingPoint = 50;
+			density = 1/10f;
+			chemobondiality = 400;
 			abosption = 0;
 			transparency = 100;
 			motavity = 0;

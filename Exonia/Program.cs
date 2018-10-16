@@ -42,7 +42,7 @@ namespace Exonia
 			//r = 250
 
 			World.particles.Add(new IronMatron(500, 300));
-			World.particles.Add(new WaterMatron(400, 300)
+			World.particles.Add(new IronMatron(400, 300)
 			{
 				vy = 0
 			});

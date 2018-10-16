@@ -19,6 +19,7 @@ namespace Exonia.particles.matter
 			size = 4;
 			heatCapactiy = 20;
 			evaporationPoint = 50;
+            meltingPoint = 10;
 			density = 0.07f;
 			chemobondiality = 40;
 			abosption = 0;
