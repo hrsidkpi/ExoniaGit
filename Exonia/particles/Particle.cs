@@ -14,6 +14,8 @@ namespace Exonia.particles
 
 		public double x, y;
 		public double vx, vy;
+		public float temperature;
+		public List<Particle> chemobonds;
 
 		public bool gravoactive;
 		public int lensity;
@@ -21,11 +23,14 @@ namespace Exonia.particles
 		public int size;
 		public int heatCapactiy;
 		public int evaporationPoint;
+		public int meltingPoint;
 		public float density;
+		public float hardness;
 		public int chemobondiality;
 		public int abosption;
 		public int transparency;
 		public int motavity;
+
 
 		public Particle(double x, double y)
 		{
@@ -49,6 +54,33 @@ namespace Exonia.particles
 			y += vy / Program.UPS;
 
 			
+			//GAS
+			if(temperature > evaporationPoint)
+			{
+				chemobonds.Clear();
+			}
+			//LIQUID
+			else if(temperature > meltingPoint)
+			{
+				foreach (Particle p in World.particles)
+				{
+					double dist = Util.Distance(this, p);
+					if(dist < 1/density && !chemobonds.Contains(p))
+					{
+						chemobonds.Add(p);
+					}
+					else if(dist > 1/density)
+					{
+						chemobonds.Remove(p);
+					}
+				}
+			}
+			//Solid
+			else
+			{
+
+			}
+
 			//APPLY GRAVITATIONAL FIELD
 			foreach (Particle p in World.particles)
 			{
@@ -60,7 +92,7 @@ namespace Exonia.particles
 				double pull = mass / (dist * dist);
 				double angle = Math.Atan2(p.y - y, p.x - x);
 
-				if (dist < 1/density)
+				if (dist < size)
 				{
 					pull = -pull/1.75f;
 				}
